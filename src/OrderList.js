@@ -4,13 +4,18 @@ import React from 'react';
 function OrderList(props){
     return (
         <div>
+            {props.orders.map(o => {
+                return(<div className='coffee-orders'>
             <ul>
-               <li>americano</li> 
-               <li>espresso</li>
-               <li>peppemint latte</li>
-                <li>eggnogg</li>
+               {Object.keys(o).map(k =>{
+                   return (
+                       <li>{k}: {o[k]}</li>
+                   )
+               })}
             </ul>
 
+                </div> )
+            })}
         </div>
     )
 }

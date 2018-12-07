@@ -15,7 +15,7 @@ class CoffeeRun extends Component {
             <div>
                 <h1>CoffeeRun</h1>
                 <CoffeeForm handleSubmit={this._addOrder} />
-                <OrderList />
+                <OrderList orders = {this.state.orders} />
             </div>
         )
     }
