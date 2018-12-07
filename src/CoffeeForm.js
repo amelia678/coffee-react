@@ -1,12 +1,19 @@
 import React, {Component} from 'react';
 
+const defaultOrder = {
+    coffee:'caramel macchiato',
+    emailAddress: 'me@me.com',
+    flavor: 'black',
+    strength: 'santas elves',
+    size: 'human'
+}
 
 class CoffeeForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            term: '',
-            items: []
+            ...defaultOrder
+            
         }
     }
     
@@ -16,10 +23,11 @@ class CoffeeForm extends Component {
             <div>
                 
                 <p>How would you like your caffeine?</p>
-                <form>
+                <form onSubmit={this._doSubmit}>
                     <label>Coffee:
                     <input 
-                    onChange={this._onChange}
+                    value= {this.state.coffee}
+                    onChange={this._updateCoffee}
                     placeholder="caramel macchiato"
 
                     />
@@ -27,7 +35,8 @@ class CoffeeForm extends Component {
                     <br></br>
                     <label>Email:
                     <input 
-                    onChange={this._onChange}
+                    value = {this.state.emailAddress}
+                    onChange={this._updateEmail}
                     type='email'
                     placeholder="me@me.com"
                     
@@ -36,7 +45,8 @@ class CoffeeForm extends Component {
                     <br></br>
                     <label>Flavor:
                     <input 
-                    onChange={this._onChange}
+                    value = {this.state.flavor}
+                    onChange={this._updateFlavor}
                     placeholder="black"
                     
                     />
@@ -44,7 +54,8 @@ class CoffeeForm extends Component {
                     <br></br>
                     <label>Strength:
                     <input 
-                    onChange={this._onChange}
+                    value = {this.state.strength}
+                    onChange={this._updateStrength}
                     placeholder="santas elves"
                     
                     />
@@ -52,7 +63,8 @@ class CoffeeForm extends Component {
                     <br></br>
                     <label>Size:
                     <input 
-                    onChange={this._onChange}
+                    value= {this.state.size}
+                    onChange={this._updateSize}
                     placeholder="human"
                     
                     />
@@ -64,10 +76,49 @@ class CoffeeForm extends Component {
         )
     }
 
-    _onChange = event => {
+    _doSubmit = event => {
+        console.log('submitted!')
+        event.preventDefault();
+        this.props.handleSubmit(this.state);
+        this._resetForm();
+    }
+
+    _resetForm = () => {
+        this.setState({...defaultOrder});
+    }
+
+    _updateCoffee = event => {
         console.log(event.target.value)
         this.setState({
-            term: event.target.value
+            coffee: event.target.value
+        })
+    }
+
+    _updateEmail = event => {
+        console.log(event.target.value)
+        this.setState({
+            emailAddress: event.target.value
+        })
+    }
+
+    _updateFlavor = event => {
+        console.log(event.target.value)
+        this.setState({
+            flavor: event.target.value
+        })
+    }
+
+    _updateStrength = event => {
+        console.log(event.target.value)
+        this.setState({
+            strength: event.target.value
+        })
+    }
+
+    _updateSize = event => {
+        console.log(event.target.value)
+        this.setState({
+            size: event.target.value
         })
     }
 }

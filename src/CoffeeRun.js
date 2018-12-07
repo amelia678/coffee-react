@@ -14,10 +14,19 @@ class CoffeeRun extends Component {
         return (
             <div>
                 <h1>CoffeeRun</h1>
-                <CoffeeForm />
+                <CoffeeForm handleSubmit={this._addOrder} />
                 <OrderList />
             </div>
         )
+    }
+
+    _addOrder = (order) => {
+        this.setState({
+            orders: [
+                ...this.state.orders,
+                order
+            ]
+        })
     }
 }
 
